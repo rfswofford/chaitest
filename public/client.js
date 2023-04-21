@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const age = document.getElementById("age");
   const index = document.getElementById("index");
   const result = document.getElementById("result");
+  const message = document.getElementById("message");
   addPerson.addEventListener("click", async (event) => {
     event.preventDefault();
     try {
@@ -18,6 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       const data = await response.json();
       result.textContent = JSON.stringify(data);
+      message.textContent = "A person entry was added"
     } catch (err) {
       result.textContent = err.message;
     }
@@ -40,6 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("index 1 is ", index1);
     try {
       const response = await fetch(`/api/v1/people/${index1}`, {
+        method: "GET",
         headers: { "Content-Type": "application/json" },
       });
       const data = await response.json();
